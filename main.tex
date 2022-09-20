@@ -1,0 +1,25 @@
+\documentclass{article}
+\input{templatePreamble}
+\newcommand{\authorName}{Daniel Kinsey}
+\newcommand{\studentNumber}{300256085}
+\newcommand{\courseName}{COURSE CODE}
+\newcommand{\assignmentName}{ASSIGNMENT NAME}
+\newcommand{\assignmentDate}{DAY of MONTH, YEAR}
+
+\begin{document}
+
+\input{templateDoc}
+
+\tableofcontents
+
+\renewcommand\thesection{} % So that numbers arent printed with sections, but the sections still appear in table of contents
+
+\foreach \i in {1,...,99} {% chktex 11
+		\edef\FileName{questions/q\i}%     The % here are necessary to eliminate any
+		\IfFileExists{\FileName}{%  spurious spaces that may get inserted
+			\section{Question \i}
+			\input{\FileName}%       at these points
+		}
+	}
+
+\end{document}

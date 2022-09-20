@@ -1,0 +1,123 @@
+\usepackage[utf8]{inputenc}
+\usepackage[margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{accents}
+\usepackage{pgfkeys}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{cancel}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{pgffor}
+\pagestyle{fancy}
+
+\geometry{
+	left=25mm,
+	right=25mm,
+	headheight=25mm,
+	top=35mm,
+	bottom=25mm,
+	footskip=10mm
+}
+
+\hypersetup{
+	colorlinks = true,
+	linkcolor = blue
+}
+
+% eg "\sv{x = \frac{3}{4}}" ... "\gv{x}"
+\newcommand{\sv}[1]{\pgfkeys{/variables/#1}}
+\newcommand{\gv}[1]{\pgfkeysvalueof{/variables/#1}}
+\newcommand{\declare}[1]{%
+	\pgfkeys{
+		/variables/#1.is family,
+		/variables/#1.unknown/.style = {\pgfkeyscurrentpath/\pgfkeyscurrentname/.initial = ##1}
+	}%
+}
+
+\declare{}
+
+\delimitershortfall=-1pt % for automatically sizing brackets
+
+\lstdefinestyle{R}{
+	language=R,                     % the language of the code
+	basicstyle=\footnotesize\ttfamily, % the size of the fonts that are used for the code
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\tiny\color{Blue},  % the style that is used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it is 1, each line will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,                   % adds a frame around the code
+	rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+	tabsize=2,                      % sets default tabsize to 2 spaces
+	captionpos=b,                   % sets the caption-position to bottom
+	breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	keywordstyle=\color{RoyalBlue},      % keyword style
+	commentstyle=\color{YellowGreen},   % comment style
+	stringstyle=\color{ForestGreen}      % string literal style
+}                                                                                                                                                                     % string literal style% comment style% keyword style% sets if automatic breaks should only happen at whitespace% sets automatic line breaking% sets the caption-position to bottom% sets default tabsize to 2 spaces% if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))% adds a frame around the code% show tabs within strings adding particular underscores% underline spaces within strings% show spaces adding particular underscores% choose the background color. You must add \usepackage{color}% how far the line-numbers are from the code
+
+\lstdefinestyle{mono}{
+	basicstyle=\footnotesize\ttfamily,
+	breaklines=true
+}
+
+\lstdefinestyle{Python}{
+	language=Python,
+	basicstyle=\ttm,  basicstyle=\footnotesize,        % size of fonts used for the code
+	breaklines=true,                 % automatic line breaking only at whitespace
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{YellowGreen},    % comment style
+	keywordstyle=\color{RoyalBlue},       % keyword style
+	stringstyle=\color{ForestGreen},     % string literal style
+	frame=single,                   % adds a frame around the code
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\tiny\color{Blue},  % the style that is used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it is 1, each line will be numbered
+	numbersep=5pt, % how far the line-numbers are from the code
+}
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+	\pushQED{\qed}%
+	\normalfont \topsep6\p@\@plus6\p@\relax
+	\trivlist
+	\item\relax
+	{\itshape
+		#1\@addpunct{.}\/}
+	\hspace\labelsep\ignorespaces
+}
+{
+	\popQED\endtrivlist\@endpefalse
+}
+
+\newenvironment{solution}
+{\renewcommand\qedsymbol{$\blacksquare$}
+	\begin{proof}[Solution]}
+		{\end{proof}}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\newenvironment{alpQ}{\begin{enumerate}[label= (\alph*)]}
+		{\end{enumerate}}
+
+\NewDocumentCommand{\midsep}{}{
+	\begin{center}
+		\rule{0.5\textwidth}{.4pt}
+	\end{center}
+}
+
+\allowdisplaybreaks % for pagebreaks in mathmode

@@ -120,4 +120,24 @@
 	\end{center}
 }
 
+% For vertically splitting stuff
+% content left, content right, title left, title right
+\NewDocumentCommand{\lsplit}{m m O{} O{}}{
+	\begin{minipage}[t]{.45\textwidth}
+		\begin{center}
+			\textbf{#3}
+		\end{center}
+		#1
+	\end{minipage}%
+	\hspace{0.025\textwidth}
+	\vrule
+	\hspace{0.025\textwidth}
+	\begin{minipage}[t]{.45\textwidth}
+		\begin{center}
+			\textbf{#4}
+		\end{center}
+		#2
+	\end{minipage}
+}
+
 \allowdisplaybreaks % for pagebreaks in mathmode

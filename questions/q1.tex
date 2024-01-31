@@ -1,4 +1,4 @@
-\sv{n = \int^1_0 \left(\left(\left(1+1\right) \cdot x\right)^2\right)^\frac{1}{2} \cdot dx}
+\sv{n = \int^1_0 \sqrt{\br{\br{\br{\sqrt[3]{27}+2\cdot i^2} \cdot x}^2}} dx}
 
 This is the question.
 \begin{alpQ}
@@ -13,15 +13,28 @@ This is the question.
 	This is the solution.
 	\begin{alpQ}
 		\item This is some Python code
-		\begin{lstlisting}[style=Python]
+		\begin{minted}{python}
 for i in range(100):
 	print("Hello for the %dth time!" % i)
 	# Comment goes here
-		\end{lstlisting}
+		\end{minted}
 		\item This is the solution to part b
 
-		\lsplit{\[\gv{n} = 1 \]}{Lorem ipsum dolor}[Left side of answer][Right side of answer]
+		\lsplit{
+			\[\gv{n} = 1 \]
+		}
+		{
+			\adjustbox{width=\textwidth}{Lorem ipsum dolor}
+		}
+		[Left side of answer][Right side of answer]
 
 	\end{alpQ}
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics{example image.png}
+		\caption{This is a figure}
+		\label{fig:example figure}
+	\end{figure}
 
 \end{solution}

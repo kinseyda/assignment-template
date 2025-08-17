@@ -48,7 +48,9 @@
 	linkcolor = blue
 }
 
-% eg "\sv{x = \frac{3}{4}}" ... "\gv{x}"
+% Set and get arbitrary variables using pgfkeys
+% Usage:
+% "\sv{x = \frac{3}{4}}" ... "\gv{x}"
 \newcommand{\sv}[1]{\pgfkeys{/variables/#1}}
 \newcommand{\gv}[1]{\pgfkeysvalueof{/variables/#1}}
 \newcommand{\declare}[1]{%
@@ -58,23 +60,37 @@
 	}%
 }
 
-\newcommand{\todo}{{\huge\bf TODO}}
+% Creates a bright red box with the text inside, useful for TODO notes to ensure
+% you dont forget to do something before submitting the assignment.
+\NewDocumentCommand{\todo}{m}{
+	\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=TODO]
+		#1
+	\end{tcolorbox}
+}
+
 
 \declare{}
 
 \delimitershortfall=-1pt % for automatically sizing brackets
 
-\newcommand{\lb}{\left\lparen}
-\newcommand{\rb}{\right\rparen}
+\newcommand{\lbr}{\left\lparen}
+\newcommand{\rbr}{\right\rparen}
 \newcommand{\lsb}{\left\lbrack}
 \newcommand{\rsb}{\right\rbrack}
 \newcommand{\lcb}{\left\lbrace}
 \newcommand{\rcb}{\right\rbrace}
-\newcommand{\br}[1]{{\lb #1 \rb}}
+% \br{} makes a bracket / parenthesis pair "()" For example: \br{x + y} will
+% produce (x + y), and \br{1 + \br{2 * 4}} will produce (1 + (2 * 4)), but with
+% nice, expanding sizes of brackets. You should use these instead of \left( and
+% \right) directly, it works better with IDEs too.
+\newcommand{\br}[1]{{\lbr #1 \rbr}}
+% \sbr{} makes a square bracket pair "[]"
 \newcommand{\sbr}[1]{{\lsb #1 \rsb}}
+% \cbr{} makes a curly brace pair "{}"
 \newcommand{\cbr}[1]{{\lcb #1 \rcb}}
 
 
+% 
 \makeatletter
 \renewenvironment{proof}[1][\proofname]{\par
 	\pushQED{\qed}%
@@ -89,15 +105,18 @@
 	\popQED\endtrivlist\@endpefalse
 }
 
+% Use this environment for solutions, it will put a "QED" symbol at the end and format it nicely.
 \newenvironment{solution}
 {\renewcommand\qedsymbol{$\blacksquare$}
 	\begin{proof}[Solution]}
 		{\end{proof}}
 \renewcommand\qedsymbol{$\blacksquare$}
 
+% Use this environment for question parts that are brackets around letters (a), (b), (c), ...
 \newenvironment{alpQ}{\begin{enumerate}[label= (\alph*)]}
 		{\end{enumerate}}
 
+% A horizontal separator line 
 \NewDocumentCommand{\midsep}{}{
 	\begin{center}
 		\rule{0.5\textwidth}{.4pt}
@@ -105,7 +124,7 @@
 }
 
 % For vertically splitting stuff
-% content left, content right, title left, title right
+% Params are: content left, content right, title left, title right
 \NewDocumentCommand{\lsplit}{m m O{} O{}}{
 	\begin{minipage}[t]{.45\textwidth}
 		\begin{center}
